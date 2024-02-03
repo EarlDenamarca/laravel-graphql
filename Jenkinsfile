@@ -4,13 +4,13 @@ pipeline {
         
         stage("build") {
             steps {
-                echo 'building'
+                sh 'composer install'
             }
         }
             
         stage("testing") {
             steps {
-                echo 'testing'
+                sh 'php artisan test'
             }
         }
             
