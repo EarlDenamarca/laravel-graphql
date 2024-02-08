@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            label 'docker'
+            label 'Built-In Node'
             image 'python:3.7'
         }
     }
