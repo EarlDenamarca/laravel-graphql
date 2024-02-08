@@ -1,12 +1,11 @@
 pipeline {
     agent {
         docker {
-            image 'python:3.7'
+            image 'node:20.10.0-alpine'
         }
     }
     stages {
         stage('Build') {
-            
             steps {
                 sh 'node --version'
             }
