@@ -1,18 +1,12 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'node:20.11.0-alpine3.19' }
+    }
     stages {
-        
-        stage("build") {
+        stage('Test') {
             steps {
-                sh 'composer install'
+                sh 'node --version'
             }
         }
-            
-        stage("testing") {
-            steps {
-                sh 'php artisan test'
-            }
-        }
-            
     }
 }
