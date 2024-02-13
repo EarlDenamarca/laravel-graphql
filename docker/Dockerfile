@@ -12,7 +12,6 @@ RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
 
 WORKDIR /var/www/html
-RUN pwd
-RUN ls -la 
+COPY ./ /var/www/html
 
 CMD [ "sh", "/var/www/html/docker/entrypoint.sh" ]
