@@ -14,4 +14,6 @@ RUN mv composer.phar /usr/local/bin/composer
 WORKDIR /var/www/html
 COPY ./ /var/www/html
 
+RUN ls -la
+
 CMD [ "sh", "/var/www/html/docker/entrypoint.sh" ]
