@@ -1,12 +1,12 @@
 pipeline {
     agent any
     stages {
-        agent {
-            docker {
-                image 'php:8.1'
-            }
-        }
         stage('Build') {
+            agent {
+                docker {
+                    image 'php:8.1'
+                }
+            }
             steps {
                 sh 'apt-get update && apt-get install -y'
                 sh 'apt-get install zlib1g-dev libzip-dev -y'
