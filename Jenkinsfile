@@ -1,6 +1,14 @@
 pipeline {
     agent any
     stages {
+        stage('Build MYSQL') {
+            agent {
+                docker {
+                    image 'mysql'
+                    args '--name mysql -e MYSQL_ROOT_PASSWORD=password'
+                }
+            }
+        }
         stage('Build Backend') {
             agent {
                 docker {
