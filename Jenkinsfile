@@ -9,7 +9,7 @@ pipeline {
                 }
             }
             steps{
-                sh 'mysql -v';
+                sh 'service mysql status';
             }
         }
         // stage('Build Backend') {
