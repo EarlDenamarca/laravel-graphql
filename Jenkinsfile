@@ -9,8 +9,8 @@ pipeline {
                 }
             }
             steps{
-                echo 'MYSQL Server is up and running';
                 sh 'mysql -u root -e "create database graphql";';
+                echo 'MYSQL Server is up and running';
             }
         }
         stage('Build Backend') {
