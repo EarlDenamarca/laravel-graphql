@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Build Backend') {
             agent {
                 docker {
                     image 'php:8.1'
@@ -13,6 +13,7 @@ pipeline {
                 sh 'docker-php-ext-install mysqli pdo pdo_mysql zip'
                 sh 'curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer'
                 sh 'composer -v'
+                sh 'composer install'
             }
         }
     }
