@@ -1,16 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Build Backend') {
-            agent {
-                docker {
-                    image 'laravel-graphql-graphql-backend:latest'
-                }
-            }
+        stage('Run docker images') {
             steps {
-                sh 'composer install'
-                sh 'php artisan migrate'
+                sh 'docker start graphql-mysql'
+                sh 'docker start graphql-backend'
             }
+        }
+        stage('Run Tests') {
+            sh 'docker exec graphql-backend php artisan test'
         }
     }
 }
