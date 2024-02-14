@@ -5,7 +5,7 @@ pipeline {
             agent {
                 docker {
                     image 'mysql'
-                    args '--name mysql -e MYSQL_ROOT_PASSWORD=password'
+                    args '--name test-graphql-mysql -e MYSQL_ROOT_PASSWORD=password'
                 }
             }
             steps{
