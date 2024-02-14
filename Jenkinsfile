@@ -4,6 +4,7 @@ pipeline {
         stage('Run docker images') {
             steps {
                 // sh 'docker start graphql-mysql'
+                sh 'chmod x+ -R ./docker'
                 sh 'ls -la ./docker'
                 sh 'docker run --name test-graphql-backend -p 8000:8000 -v ./:/var/www/html -d laravel-graphql-graphql-backend:latest'
             }
