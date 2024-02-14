@@ -10,7 +10,7 @@ pipeline {
             }
             steps{
                 echo 'MYSQL Server is up and running';
-                sh 'ps aux | grep mysql'
+                sh 'mysql -u root -p'
             }
         }
         stage('Build Backend') {
