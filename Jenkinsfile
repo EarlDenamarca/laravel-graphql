@@ -5,6 +5,7 @@ pipeline {
             steps {
                 sh 'docker start graphql-mysql'
                 sh 'docker start graphql-backend'
+                sh 'docker exec graphql-backend php artisan key:generate'
             }
         }
         stage('Run Tests') {
