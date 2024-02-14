@@ -1,18 +1,6 @@
 pipeline {
     agent any
     stages {
-        stage('Build MYSQL') {
-            agent {
-                docker {
-                    image 'mysql'
-                    args '--name test-graphql-mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -d mysql:latest'
-                }
-            }
-            steps{
-                sh 'mysql -u root -e "create database graphql";';
-                echo 'MYSQL Server is up and running';
-            }
-        }
         stage('Build Backend') {
             agent {
                 docker {
