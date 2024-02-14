@@ -5,7 +5,7 @@ pipeline {
             docker {
                 image 'php:8.1'
             }
-        },
+        }
         stage('Build') {
             steps {
                 sh 'apt-get update && apt-get install -y'
