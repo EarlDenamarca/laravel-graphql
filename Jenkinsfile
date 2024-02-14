@@ -14,4 +14,10 @@ pipeline {
             }
         }
     }
+    posts() {
+        always {
+            sh 'docker stop graphql-mysql'
+            sh 'docker stop graphql-backend'
+        }
+    }
 }
