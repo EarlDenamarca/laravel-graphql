@@ -3,21 +3,20 @@ pipeline {
     stages {
         stage('Run docker images') {
             steps {
-                sh 'docker start graphql-mysql'
-                sh 'docker start graphql-backend'
-                sh 'docker exec graphql-backend php artisan key:generate'
+                // sh 'docker start graphql-mysql'
+                sh 'docker run --name test-graphql-backend -p 8000:8000 -v ./:/var/www/html -d laravel-graphql-graphql-backend:latest'
             }
         }
         stage('Run Tests') {
             steps {
-                sh 'docker exec graphql-backend php artisan test'
+                sh 'docker exec test-graphql-backend php artisan test'
             }
         }
     }
-    post() {
-        always {
-            sh 'docker stop graphql-mysql'
-            sh 'docker stop graphql-backend'
-        }
-    }
+    // post() {
+    //     always {
+    //         sh 'docker stop graphql-mysql'
+    //         sh 'docker stop graphql-backend'
+    //     }
+    // }
 }
