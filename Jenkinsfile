@@ -8,7 +8,9 @@ pipeline {
             }
         }
         stage('Run Tests') {
-            sh 'docker exec graphql-backend php artisan test'
+            steps {
+                sh 'docker exec graphql-backend php artisan test'
+            }
         }
     }
 }
