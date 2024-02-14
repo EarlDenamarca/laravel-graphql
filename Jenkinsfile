@@ -1,17 +1,20 @@
 pipeline {
-    agent {
-      	docker {
-        	image 'ubuntu:latest'
-        }
-    }
+    agent any
     stages {
+        agent {
+            docker {
+                image 'php:8.1'
+            }
+        },
         stage('Build') {
             steps {
                 sh 'apt-get update && apt-get install -y'
-                // sh 'cp .env.test .env'
-                // sh 'docker compose up --build'
-                // sh 'docker compose exec graphql-backend php artisan key:generate'
-                // sh 'docker compose exec graphql-backend php artisan migrate'
+                sh 'apt-get install zlib1g-dev libzip-dev -y'
+                sh 'docker-php-ext-install mysqli pdo pdo_mysql zip'
+                sh "php -r copy('https://getcomposer.org/installer', 'composer-setup.php');"
+                sh 'php composer-setup.php'
+                sh 'php -r "unlink(composer-setup.php);"'
+                sh 'mv composer.phar /usr/local/bin/composer'
             }
         }
     }
