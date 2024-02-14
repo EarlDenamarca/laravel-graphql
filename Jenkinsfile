@@ -8,6 +8,9 @@ pipeline {
                     args '--name mysql -e MYSQL_ROOT_PASSWORD=password'
                 }
             }
+            steps{
+                sh 'mysql -v';
+            }
         }
         stage('Build Backend') {
             agent {
