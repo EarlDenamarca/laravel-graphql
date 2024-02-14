@@ -1,12 +1,17 @@
 pipeline {
-    agent any
+    agent {
+      	docker {
+        	image 'ubuntu:latest'
+        }
+    }
     stages {
         stage('Build') {
             steps {
-                sh 'cp .env.test .env'
-                sh 'docker compose up --build'
-                sh 'docker compose exec graphql-backend php artisan key:generate'
-                sh 'docker compose exec graphql-backend php artisan migrate'
+                sh 'apt-get update -y'
+                // sh 'cp .env.test .env'
+                // sh 'docker compose up --build'
+                // sh 'docker compose exec graphql-backend php artisan key:generate'
+                // sh 'docker compose exec graphql-backend php artisan migrate'
             }
         }
     }
