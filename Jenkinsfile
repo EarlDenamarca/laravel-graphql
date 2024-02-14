@@ -5,11 +5,12 @@ pipeline {
             agent {
                 docker {
                     image 'mysql'
-                    args '--name test-graphql-mysql -e MYSQL_ROOT_PASSWORD=password'
+                    args '--name test-graphql-mysql -e MYSQL_ROOT_PASSWORD=password -d mysql:latest'
                 }
             }
             steps{
                 echo 'MYSQL Server is up and running';
+                sh 'mysql --version';
             }
         }
         stage('Build Backend') {
